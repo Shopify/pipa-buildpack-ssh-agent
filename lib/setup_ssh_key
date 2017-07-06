@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+ssh_dir = File.expand_path "~/.ssh"
+ssh_key = ENV['SSH_KEY'] || ENV['GITHUB_DEPLOY_KEY']
+
+if ssh_key.nil?
+  puts "SSH_KEY (or GITHUB_DEPLOY_KEY) not set"
+  puts "  Make sure one of these keys is in the environment variables or the ejson files to export them"
+  exit 1
+end
+
+# Create id_rsa file and write contents
+File.open "#{ssh_dir}/id_rsa", 'w' do |f|
+  f.write ssh_key
+end
+FileUtils.chmod 0600, "#{ssh_dir}/id_rsa"
