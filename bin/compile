@@ -32,12 +32,8 @@ FileUtils.chmod 0755, "#{build_dir}/setup_ssh_key"
 File.open "#{profile_dir}/launch_ssh_agent.sh", 'w' do |f|
   f.puts """
 #!/usr/bin/env bash
-echo \"ssh-agent starting as $(whoami)\"
-echo \"pstree:\"
-pstree
-echo \"profile_dir: #{profile_dir}\"
 ~/setup_ssh_key
-eval `ssh-agent -s`
+eval `sudo -u herokuishuser ssh-agent -s`
 ssh-add ~/.ssh/id_rsa
 """
 end
