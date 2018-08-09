@@ -22,7 +22,7 @@ arrow "         SSH AGENT KEY BUILDPACK            "
 arrow "############################################"
 
 # Create the ssh directory on the server
-Dir.mkdir(ssh_dir, 0700) unless File.exists?(ssh_dir)
+Dir.mkdir(ssh_dir, 0700)
 # Make the profile.d dir for scripts to run at dyno start time and add a script for launching ssh-agent
 Dir.mkdir(profile_dir, 0700) unless File.exists?(profile_dir)
 

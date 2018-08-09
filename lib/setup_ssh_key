@@ -11,6 +11,9 @@ if ssh_key.nil?
   exit 1
 end
 
+puts "RENTRE BUILDPACK"
+puts ssh_key
+
 # Create id_rsa file and write contents
 File.open "#{ssh_dir}/id_rsa", 'w' do |f|
   f.write ssh_key
